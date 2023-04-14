@@ -4,6 +4,8 @@ import axios from 'axios';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
+import { signIn } from 'next-auth/react';
+import toast from 'react-hot-toast';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import useRegisterModal from '@/app/hooks/useRegisterModal';
@@ -11,12 +13,12 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import Modal from '@/app/components/modals/Modal';
 import Heading from '@/app/components/Heading';
 import Input from '@/app/components/inputs/Input';
-import toast from 'react-hot-toast';
 import Button from '@/app/components/Button';
-import { signIn } from 'next-auth/react';
+import useLoginModal from '@/app/hooks/useLoginModal';
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -46,6 +48,10 @@ const RegisterModal = () => {
         setIsLoading(false);
       });
   };
+  const onToggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [registerModal, loginModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -104,7 +110,7 @@ const RegisterModal = () => {
         <p>
           Already have an account?
           <span
-            onClick={registerModal.onClose}
+            onClick={onToggle}
             className="
               cursor-pointer
               text-neutral-800
