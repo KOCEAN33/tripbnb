@@ -5,7 +5,7 @@ import getListings from '@/app/actions/getListings';
 import ListingCard from '@/app/components/listings/ListingCard';
 import getCurrentUser from '@/app/actions/getCurrentUser';
 
-export default async function Home({}) {
+export default async function Home() {
   const listings = await getListings();
   const currentUser = await getCurrentUser();
 
@@ -31,15 +31,13 @@ export default async function Home({}) {
             xl:grid-cols-5
             2xl:grid-cols-6"
         >
-          {listings.map((listing: any) => {
-            return (
-              <ListingCard
-                currentUser={currentUser}
-                key={listing.id}
-                data={listing}
-              />
-            );
-          })}
+          {listings.map((listing) => (
+            <ListingCard
+              currentUser={currentUser}
+              key={listing.id}
+              data={listing}
+            />
+          ))}
         </div>
       </Container>
     </ClientOnly>
