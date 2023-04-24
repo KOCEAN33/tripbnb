@@ -3,6 +3,7 @@ import ClientOnly from '@/app/components/ClientOnly';
 
 import getCurrentUser from '@/app/actions/getCurrentUser';
 import getReservations from '@/app/actions/getReservations';
+
 import TripsClient from '@/app/trips/TripsClient';
 
 const TripsPage = async () => {
@@ -23,7 +24,7 @@ const TripsPage = async () => {
       <ClientOnly>
         <EmptyState
           title="No trips found"
-          subtitle="Looks like you havent reserved any trips."
+          subtitle="Looks like you have no reserved any trips."
         />
       </ClientOnly>
     );

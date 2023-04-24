@@ -7,8 +7,9 @@ import { Range } from 'react-date-range';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 
-import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
 import useLoginModal from '@/app/hooks/useLoginModal';
+import { SafeListing, SafeReservation, SafeUser } from '@/app/types';
+
 import { categories } from '@/app/components/navbar/Categories';
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listings/ListingHead';

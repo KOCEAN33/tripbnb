@@ -1,14 +1,14 @@
 'use client';
 
+import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
+
+import { SafeListing, SafeUser } from '@/app/types';
 
 import Heading from '@/app/components/Heading';
 import Container from '@/app/components/Container';
-
-import { SafeListing, SafeUser } from '@/app/types';
-import axios from 'axios';
-import { toast } from 'react-hot-toast';
 import ListingCard from '@/app/components/listings/ListingCard';
 
 interface PropertiesClientProps {
@@ -23,7 +23,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
   const router = useRouter();
   const [deletingId, setDeletingId] = useState('');
 
-  const onCancel = useCallback(
+  const onDelete = useCallback(
     (id: string) => {
       setDeletingId(id);
 
@@ -64,7 +64,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
             key={listings.id}
             data={listings}
             actionId={listings.id}
-            onAction={onCancel}
+            onAction={onDelete}
             disabled={deletingId === listings.id}
             actionLabel="Delete property"
             currentUser={currentUser}

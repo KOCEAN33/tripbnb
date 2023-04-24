@@ -1,9 +1,10 @@
 import Container from '@/app/components/Container';
-import ClientOnly from './components/ClientOnly';
+import ClientOnly from '@/app/components/ClientOnly';
 import EmptyState from '@/app/components/EmptyState';
-import getListings, { IListingsParams } from '@/app/actions/getListings';
 import ListingCard from '@/app/components/listings/ListingCard';
+
 import getCurrentUser from '@/app/actions/getCurrentUser';
+import getListings, { IListingsParams } from '@/app/actions/getListings';
 
 interface HomeProps {
   searchParams: IListingsParams;
@@ -36,7 +37,7 @@ const Home = async ({ searchParams }: HomeProps) => {
             xl:grid-cols-5
             2xl:grid-cols-6"
         >
-          {listings.map((listing) => (
+          {listings.map((listing: any) => (
             <ListingCard
               currentUser={currentUser}
               key={listing.id}
